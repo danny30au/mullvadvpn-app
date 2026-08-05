@@ -1,0 +1,58 @@
+name: Build Windows x64 Installer
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: # Allows you to trigger the build manually from the Actions tab
+
+jobs:
+  build-windows:
+    name: Compile & Package Windows Installer
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Install System Dependencies (Protobuf & NSIS)
+        run: |
+          choco install protoc -y
+          choco install nsis -y
+
+      - name: Set up MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Set up Node.js via Volta
+        uses: volta-cli/action@v4
+
+      - name: Setup Rust Targets
+        shell: bash
+        run: |
+          rustup update stable
+          rustup default stable
+          rustup target add x86_64-pc-windows-msvc
+          rustup target add i686-pc-windows-msvc
+          # Run the repo's internal Rust setup script
+          ./scripts/setup-rust windows
+
+      - name: Build App & Generate Installer
+        shell: bash
+        run: |
+          # The --optimize flag enables compiler optimizations for a smaller, production-ready binary.
+          # This script automatically compiles C++ libraries, builds the Rust daemon,
+          # packages the Electron app, and creates the final NSIS installer.
+          ./build.sh --optimize
+
+      - name: Upload Installer Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mullvad-vpn-windows-installer
+          path: dist/*.exe
+          if-no-files-found: warn
