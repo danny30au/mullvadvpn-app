@@ -44,6 +44,10 @@ jobs:
           rustup target add i686-pc-windows-msvc
           # Run the repo's internal Rust setup script
           ./scripts/setup-rust windows
+          
+      - name: Remove GNU link.exe to prevent MSVC conflict
+        shell: pwsh
+        run: Remove-Item -Path "C:\Program Files\Git\usr\bin\link.exe" -Force
 
       - name: Build App & Generate Installer
         shell: bash
