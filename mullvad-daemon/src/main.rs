@@ -25,24 +25,6 @@ mod system_service;
 const EARLY_BOOT_LOG_FILENAME: &str = "early-boot-fw.log";
 
 fn main() {
-    // --- ADDED PRIORITY BOOST ---
-    
-    // For Windows: Elevate to High Priority Class
-    #[cfg(windows)]
-    unsafe {
-        use windows::Win32::System::Threading::{GetCurrentProcess, SetPriorityClass, HIGH_PRIORITY_CLASS};
-        let _ = SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
-    }
-
-    // For Linux/macOS (Unix): Lower the "nice" value to increase priority
-    // (Requires root, which the daemon already uses)
-    #[cfg(unix)]
-    unsafe {
-        libc::setpriority(libc::PRIO_PROCESS, 0, -10);
-    }
-    
-    // ----------------------------
-
     let runtime = new_runtime();
     let exit_code = match runtime.block_on(run()) {
         Ok(_) => 0,
