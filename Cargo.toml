@@ -68,8 +68,8 @@ license = "GPL-3.0-or-later"
 anyhow = "1.0"
 async-trait = "0.1"
 bytes = "1.11.1"
-chrono = { version = "0.4.26", default-features = false }
-clap = { version = "4.4.18", features = ["cargo", "derive"] }
+chrono = { version = "0.4.45", default-features = false }
+clap = { version = "4.6.5", features = ["cargo", "derive"] }
 ctrlc = "3.5"
 dirs = "6.0.0"
 either = "1.15.0"
@@ -104,14 +104,14 @@ proptest = "1.9"
 prost = "0.14.3"
 prost-types = "0.14.3"
 rand = "0.9.3"
-reqwest = { version = "0.12.23", default-features = false, features = [
+reqwest = { version = "0.13", default-features = false, features = [
   "rustls-tls"
 ] }
 rtnetlink = "0.21.0"
 rustls = { version = "0.23", default-features = false }
 rustls-pki-types = "1.13.1"
 safelog = "0.8.2"
-serde = "1.0.204"
+serde = "1.0.229"
 serde_json = "1.0.122"
 sha2 = "0.10"
 shadowsocks = { version = "1.23.2", default-features = false, features = [
@@ -127,7 +127,7 @@ talpid-dbus = { path = "./talpid-dbus" }
 tempfile = "3.27.0"
 thiserror = "2.0"
 tipsy = "0.7.0"
-tokio = { version = "1.44" }
+tokio = { version = "1.53.1" }
 tokio-util = "0.7"
 tonic = "0.14.6"
 tonic-prost = "0.14.6"
@@ -140,6 +140,7 @@ tun05 = { package = "tun", version = "0.5.5", features = ["async"] }
 uniffi = "0.31.2"
 vec1 = "1.12"
 webpki-roots = "1.0.4"
+wfp = "0.2.0"
 widestring = "1.2"
 windows = "0.62.2"
 windows-registry = "0.6.1"
