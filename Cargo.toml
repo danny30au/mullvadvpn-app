@@ -104,7 +104,7 @@ proptest = "1.9"
 prost = "0.14.3"
 prost-types = "0.14.3"
 rand = "0.9.3"
-reqwest = { version = "0.13.4", features = ["rustls", ...] }
+reqwest = { version = "0.13.4", features = "rustls" }
 rtnetlink = "0.21.0"
 rustls = { version = "0.23", default-features = false }
 rustls-pki-types = "1.13.1"
