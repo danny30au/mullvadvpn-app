@@ -80,7 +80,7 @@ hickory-resolver = { version = "0.26.1", default-features = false, features = [
   "tokio"
 ] }
 hickory-server = { version = "0.26.1", features = ["resolver"] }
-hyper-util = { version = "0.1.8", features = [
+hyper-util = { version = "0.1.20", features = [
   "client",
   "client-legacy",
   "http1",
@@ -104,7 +104,7 @@ proptest = "1.9"
 prost = "0.14.3"
 prost-types = "0.14.3"
 rand = "0.9.3"
-reqwest = { version = "0.13", default-features = false, features = [
+reqwest = { version = "0.13.4", default-features = false, features = [
   "rustls-tls"
 ] }
 rtnetlink = "0.21.0"
