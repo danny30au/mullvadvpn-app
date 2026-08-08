@@ -116,7 +116,7 @@ shadowsocks = { version = "1.24.0", default-features = false, features = [
   "aead-cipher",
   "stream-cipher"
 ] }
-shadowsocks-crypto = { version = "0.7.0", features = ["v1-stream"] }
+shadowsocks-crypto = { version = "0.6.2", features = ["v1-stream"] }
 socket2 = "0.5.7"
 strum = { version = "0.27" }
 surge-ping = "0.8.4"
